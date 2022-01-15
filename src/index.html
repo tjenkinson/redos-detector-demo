@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A tool that tests with certainty if a regex pattern is safe from ReDoS attacks."
+    />
+    <script type="module" src="./entry.ts"></script>
+    <title>ReDoS Detector Demo</title>
+  </head>
+  <body>
+    <my-root
+      id="root"
+      style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
+    ></my-root>
+    <script type="text/javascript">
+      (() => {
+        const PATTERN = 'pattern';
+        const UNICODE = 'unicode';
+        const root = document.getElementById('root');
+        const params = new URLSearchParams(window.location.search);
+        root.setAttribute('pattern', params.get(PATTERN) || '');
+        params.get(UNICODE) === 'true'
+          ? root.setAttribute('unicode', '')
+          : root.removeAttribute('unicode');
+
+        root.addEventListener('my-change', () => {
+          const url = new URL(location.href);
+          url.searchParams.set(PATTERN, root.pattern);
+          url.searchParams.set(UNICODE, root.unicode ? 'true' : 'false');
+          history.replaceState(null, '', url);
+        });
+      })();
+    </script>
+  </body>
+</html>
