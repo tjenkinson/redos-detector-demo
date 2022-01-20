@@ -21,10 +21,8 @@
         const UNICODE = 'unicode';
         const root = document.getElementById('root');
         const params = new URLSearchParams(window.location.search);
-        root.setAttribute('pattern', params.get(PATTERN) || '');
-        params.get(UNICODE) === 'true'
-          ? root.setAttribute('unicode', '')
-          : root.removeAttribute('unicode');
+        root.pattern = params.get(PATTERN) || '';
+        root.unicode = params.get(UNICODE) === 'true';
 
         root.addEventListener('my-change', () => {
           const url = new URL(location.href);
