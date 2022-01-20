@@ -12,7 +12,7 @@ import { setsEqual } from '../set';
 @customElement('my-result')
 export class Result extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
-    trail: { type: Object, reflect: true },
+    trail: { type: Object },
   };
 
   static styles = [
