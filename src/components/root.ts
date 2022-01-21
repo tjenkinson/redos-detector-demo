@@ -14,11 +14,10 @@ import './loading';
 import './title';
 import './version';
 import './description';
-import { Result as ResultEl } from './result';
+import { Result, Result as ResultEl } from './result';
 import { setsEqual } from '../set';
 import { aborted, calculate, CalculateHandle } from '../calculate';
 import { ResultOrError } from '../calculate-worker';
-import { version as RedosDetectorVersion } from 'redos-detector';
 
 type ResultErrorLoading = ResultOrError | { type: 'loading' };
 
@@ -31,6 +30,7 @@ export class Root extends LitElement {
     _highlightB: { state: true },
     _included: { state: true },
     _result: { state: true },
+    _version: { state: true },
   };
 
   static styles = [
@@ -115,6 +115,7 @@ export class Root extends LitElement {
   ];
 
   private _calculateHandle: CalculateHandle | null = null;
+  private _version: string | null = null;
   private _highlightA: Set<number> = new Set();
   private _highlightB: Set<number> = new Set();
   private _result: ResultErrorLoading = {
@@ -177,6 +178,13 @@ export class Root extends LitElement {
         if (e === aborted) return;
         throw e;
       });
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    import('redos-detector').then(({ version }) => {
+      this._version = version;
+    });
   }
 
   private _onPatternChange(): void {
@@ -290,7 +298,7 @@ export class Root extends LitElement {
         </div>
         <footer class="footer">
           <div class="version">
-            <my-version version="${RedosDetectorVersion}"></my-version>
+            <my-version version="${this._version || ''}"></my-version>
           </div>
         </footer>
       </div>
