@@ -14,7 +14,7 @@ import './loading';
 import './title';
 import './version';
 import './description';
-import { Result, Result as ResultEl } from './result';
+import { Result as ResultEl } from './result';
 import { setsEqual } from '../set';
 import { aborted, calculate, CalculateHandle } from '../calculate';
 import { ResultOrError } from '../calculate-worker';
@@ -182,7 +182,7 @@ export class Root extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    import('redos-detector').then(({ version }) => {
+    import('../redos-detector-version').then(({ version }) => {
       this._version = version;
     });
   }
