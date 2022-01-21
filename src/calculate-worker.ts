@@ -22,8 +22,8 @@ export type Calculate = (
 
 const calculate: Calculate = async (pattern: string, unicode: boolean) => {
   try {
-    const RedosDetector = await import('redos-detector');
-    const result = RedosDetector.isSafePattern(pattern, {
+    const { isSafePattern } = await import('./is-safe-pattern');
+    const result = isSafePattern(pattern, {
       maxResults: 10,
       unicode,
     });
