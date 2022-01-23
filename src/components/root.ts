@@ -96,7 +96,8 @@ export class Root extends LitElement {
 
       .description,
       .pattern,
-      .messages {
+      .messages,
+      .input {
         margin-top: 0.4rem;
       }
 
@@ -238,6 +239,7 @@ export class Root extends LitElement {
           </div>
           <my-description class="description"></my-description>
           <my-input
+            class="input"
             ${ref(this._inputRef)}
             .value=${this.pattern}
             .unicode=${this.unicode}
