@@ -14,6 +14,7 @@ import './loading';
 import './title';
 import './version';
 import './description';
+import './gh-link';
 import { Result as ResultEl } from './result';
 import { setsEqual } from '../set';
 import { aborted, calculate, CalculateHandle } from '../calculate';
@@ -84,6 +85,13 @@ export class Root extends LitElement {
           rgba(255, 255, 255, 1) 10%,
           rgba(255, 255, 255, 0) 100%
         );
+      }
+
+      .heading {
+        display: flex;
+        gap: 0.8em;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .description,
@@ -224,7 +232,10 @@ export class Root extends LitElement {
     return html`
       <div class="root">
         <div class="body">
-          <my-title></my-title>
+          <div class="heading">
+            <my-title class="title"></my-title>
+            <my-gh-link class="link"></my-gh-link>
+          </div>
           <my-description class="description"></my-description>
           <my-input
             ${ref(this._inputRef)}
