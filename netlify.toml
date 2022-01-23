@@ -11,4 +11,9 @@
 [[headers]]
   for = "/*.js"
   [headers.values]
-      cache-control = "public, max-age=604800, immutable"
+      cache-control = "public, max-age=6048000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+      cache-control = "public, max-age=6048000, immutable"
