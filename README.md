@@ -1,3 +1,3 @@
 # redos-detector-demo
 
-The demo for "https://github.com/tjenkinson/redos-detector".
+The [demo](https://redosdetector.com/) for "https://github.com/tjenkinson/redos-detector".
