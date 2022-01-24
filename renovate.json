@@ -1,0 +1,19 @@
+{
+  "extends": ["config:base"],
+  "labels": ["dependencies"],
+  "prHourlyLimit": 0,
+  "prCreation": "not-pending",
+  "stabilityDays": 7,
+  "vulnerabilityAlerts": true,
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "matchPackageNames": ["redos-detector"],
+      "stabilityDays": 0
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": "pin"
+    }
+  ]
+}
