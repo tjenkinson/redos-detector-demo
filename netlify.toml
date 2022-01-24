@@ -17,3 +17,9 @@
   for = "/*.png"
   [headers.values]
       cache-control = "public, max-age=6048000, immutable"
+
+[[redirects]]
+  from = "https://redos-detector.netlify.app/*"
+  to = "https://redosdetector.com/:splat"
+  status = 301
+  force = true
