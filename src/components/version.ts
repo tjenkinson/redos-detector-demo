@@ -29,7 +29,7 @@ export class Version extends LitElement {
         href="https://github.com/tjenkinson/redos-detector"
         target="_blank"
         rel="noopener"
-        >v${this.version}</a
+        >${this.version ? `v${this.version}` : ''}</a
       >
     </div>`;
   }
