@@ -1,6 +1,6 @@
 import { LitElement, html, PropertyDeclaration, css } from 'lit';
 import { customElement } from 'lit/decorators';
-import { aReset, borderBox, h1Reset, host } from '../css';
+import { aReset, borderBox, host } from '../css';
 
 @customElement('my-gh-link')
 export class GhLink extends LitElement {
