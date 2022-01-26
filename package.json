@@ -13,7 +13,7 @@
     "check": "tsc --noEmit",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "build:ci": "npm run check && npm run prettier:check && npm run build",
+    "build:ci": "npm run build",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
