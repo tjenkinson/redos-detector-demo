@@ -36,7 +36,7 @@ export class RedosUnsafe extends LitElement {
   render() {
     return html`<p class="message">
       <span class="icon">❌</span>This pattern
-      ${this.maybe ? 'might not be' : 'is not'} safe from ReDOS attacks.
+      ${this.maybe ? 'might not be' : 'is not'} safe from ReDoS attacks.
     </p>`;
   }
 }
