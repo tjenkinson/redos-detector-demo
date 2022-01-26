@@ -33,7 +33,7 @@ export class RedosSafe extends LitElement {
 
   render() {
     return html`<p class="message">
-      <span class="icon">✔</span>This pattern is safe from ReDOS attacks. 🎉
+      <span class="icon">✔</span>This pattern is safe from ReDoS attacks. 🎉
     </p>`;
   }
 }
