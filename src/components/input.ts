@@ -61,7 +61,7 @@ export class Input extends LitElement {
 
   render() {
     return html`<div class="container">
-    <div class="slash">/</div>
+      <div class="slash">/</div>
       <input
         ${ref(this._inputRef)}
         class="input"
@@ -75,16 +75,15 @@ export class Input extends LitElement {
         placeholder="Enter RegEx pattern..."
       />
       <div class="slash">/</div>
-        <div class="unicode">
-          <input
-            ${ref(this._checkboxRef)}
-            id="unicode"
-            class="checkbox"
-            type="checkbox"
-            ?checked=${this.unicode}
-            @input=${this._onChange}
-          /><label for="unicode">Unicode</label>
-        </div>
+      <div class="unicode">
+        <input
+          ${ref(this._checkboxRef)}
+          id="unicode"
+          class="checkbox"
+          type="checkbox"
+          ?checked=${this.unicode}
+          @input=${this._onChange}
+        /><label for="unicode">Unicode</label>
       </div>
     </div>`;
   }
