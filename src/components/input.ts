@@ -22,7 +22,7 @@ export class Input extends LitElement {
     css`
       .container {
         display: grid;
-        grid-template-columns: 1fr max-content;
+        grid-template-columns: max-content 1fr max-content max-content;
         width: 100%;
         align-items: center;
         grid-gap: 0.25em;
@@ -31,12 +31,12 @@ export class Input extends LitElement {
       .input {
         display: block;
         width: 100%;
-        font-size: 1.5rem;
-        font-family: Arial;
         padding: 0.4rem 0.5rem;
       }
 
-      .unicode {
+      .slash,
+      .unicode,
+      .input {
         font-size: 1.5rem;
         font-family: Arial;
       }
@@ -61,6 +61,7 @@ export class Input extends LitElement {
 
   render() {
     return html`<div class="container">
+    <div class="slash">/</div>
       <input
         ${ref(this._inputRef)}
         class="input"
@@ -73,15 +74,17 @@ export class Input extends LitElement {
         @input=${this._onChange}
         placeholder="Enter RegEx pattern..."
       />
-      <div class="unicode">
-        <input
-          ${ref(this._checkboxRef)}
-          id="unicode"
-          class="checkbox"
-          type="checkbox"
-          ?checked=${this.unicode}
-          @input=${this._onChange}
-        /><label for="unicode">Unicode</label>
+      <div class="slash">/</div>
+        <div class="unicode">
+          <input
+            ${ref(this._checkboxRef)}
+            id="unicode"
+            class="checkbox"
+            type="checkbox"
+            ?checked=${this.unicode}
+            @input=${this._onChange}
+          /><label for="unicode">Unicode</label>
+        </div>
       </div>
     </div>`;
   }
