@@ -7,6 +7,7 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
+    cache-control = "public, max-age=60, stale-while-revalidate=120, stale-if-error=600"
 
 [[headers]]
   for = "/*.js"
