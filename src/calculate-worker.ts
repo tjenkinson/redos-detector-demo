@@ -32,7 +32,7 @@ const calculate: Calculate = async (pattern: string, unicode: boolean) => {
         [a, b].forEach((side) => {
           const nodes = [
             side.node,
-            ...side.backReferenceStack.map(({ node }) => node),
+            ...side.backreferenceStack.map(({ node }) => node),
           ];
           nodes.forEach((node) => {
             sequence(node.start.offset, node.end.offset).forEach((offset) => {

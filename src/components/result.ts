@@ -102,10 +102,10 @@ export class Result extends LitElement {
           entrySide.node.start.offset,
           entrySide.node.end.offset
         ).forEach((offset) => sideOffsets.add(offset));
-        entrySide.backReferenceStack.forEach((backReference) => {
+        entrySide.backreferenceStack.forEach((backreference) => {
           sequence(
-            backReference.node.start.offset,
-            backReference.node.end.offset
+            backreference.node.start.offset,
+            backreference.node.end.offset
           ).forEach((offset) => sideOffsets.add(offset));
         });
         return sideOffsets;
