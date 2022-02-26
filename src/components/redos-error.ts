@@ -4,8 +4,8 @@ import { customElement } from 'lit/decorators';
 import { borderBox, host, pReset } from '../css';
 
 const errorToMessage: Record<RedosDetectorError, string> = {
-  hitMaxResults:
-    'Hit max results limit, so there are more results than shown here.',
+  hitMaxBacktracks:
+    'Hit max backtracks, so there may be more results than shown here.',
   hitMaxSteps:
     'Hit maximum number of steps so there may be more results than shown here.',
   stackOverflow: 'Stack overflow occurred. Regex may have too much branching.',

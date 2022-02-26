@@ -24,7 +24,6 @@ const calculate: Calculate = async (pattern: string, unicode: boolean) => {
   try {
     const { isSafePattern } = await import('./redos-detector-is-safe-pattern');
     const result = isSafePattern(pattern, {
-      maxResults: 10,
       unicode,
     });
     const included: Set<number> = new Set();

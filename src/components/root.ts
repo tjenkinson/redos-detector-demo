@@ -15,12 +15,20 @@ import './title';
 import './version';
 import './description';
 import './gh-link';
+import './more-results-msg';
 import { Result as ResultEl } from './result';
 import { setsEqual } from '../set';
 import { aborted, calculate, CalculateHandle } from '../calculate';
 import { ResultOrError } from '../calculate-worker';
+import { BacktrackCount } from 'redos-detector';
 
 type ResultErrorLoading = ResultOrError | { type: 'loading' };
+
+const resultsLimit = 20;
+
+function backtrackCountToNumber(backtrackCount: BacktrackCount): number {
+  return backtrackCount.infinite ? Infinity : backtrackCount.value;
+}
 
 @customElement('my-root')
 export class Root extends LitElement {
@@ -256,7 +264,11 @@ export class Root extends LitElement {
                 : ''}
               ${result?.result.safe
                 ? html`<div>
-                    <my-redos-safe></my-redos-safe>
+                    <my-redos-safe
+                      .backtrackCount=${backtrackCountToNumber(
+                        result.result.worstCaseBackTrackCount
+                      )}
+                    ></my-redos-safe>
                   </div>`
                 : ''}
               ${result && !result.result.safe
@@ -264,6 +276,9 @@ export class Root extends LitElement {
                     <div>
                       <my-redos-unsafe
                         .maybe=${result.result.trails.length === 0}
+                        .backtrackCount=${backtrackCountToNumber(
+                          result.result.worstCaseBackTrackCount
+                        )}
                       ></my-redos-unsafe>
                     </div>
                   `
@@ -297,7 +312,7 @@ export class Root extends LitElement {
           ${result?.result.trails.length
             ? html`
                 <div class="results">
-                  ${result.result.trails.map(
+                  ${result.result.trails.slice(0, resultsLimit).map(
                     (trail) => html`<div class="result">
                       <my-result
                         .trail=${trail}
@@ -307,6 +322,9 @@ export class Root extends LitElement {
                   )}
                 </div>
               `
+            : ''}
+          ${result?.result.trails.length > resultsLimit
+            ? html`<my-more-results-msg></my-more-results-msg>`
             : ''}
         </div>
         <footer class="footer">

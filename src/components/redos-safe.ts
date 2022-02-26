@@ -1,4 +1,3 @@
-import { RedosDetectorError } from 'redos-detector';
 import { LitElement, html, PropertyDeclaration, css } from 'lit';
 import { customElement } from 'lit/decorators';
 import { borderBox, host, pReset } from '../css';
@@ -6,10 +5,10 @@ import { borderBox, host, pReset } from '../css';
 @customElement('my-redos-safe')
 export class RedosSafe extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
-    error: { type: String },
+    backtrackCount: { type: Number },
   };
 
-  public error!: RedosDetectorError;
+  public backtrackCount!: number;
 
   static styles = [
     borderBox,
@@ -33,7 +32,15 @@ export class RedosSafe extends LitElement {
 
   render() {
     return html`<p class="message">
-      <span class="icon">✔</span>This pattern is safe from ReDoS attacks. 🎉
+      <span class="icon">✔</span>This pattern is safe from ReDoS
+      attacks.${this.backtrackCount
+        ? ` There ${this.backtrackCount === 1 ? 'is' : 'are'} ${
+            this.backtrackCount === Infinity ? 'infinite' : this.backtrackCount
+          } backtrack${
+            this.backtrackCount !== 1 ? 's' : ''
+          } possible in the worst case.`
+        : ''}
+      🎉
     </p>`;
   }
 }
