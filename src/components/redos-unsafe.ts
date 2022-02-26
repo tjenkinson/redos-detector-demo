@@ -39,7 +39,7 @@ export class RedosUnsafe extends LitElement {
     return html`<p class="message">
       <span class="icon">❌</span>This pattern
       ${this.maybe ? 'might not be' : 'is not'} safe from ReDoS attacks. There
-      ${this.backtrackCount === 1 ? 'is' : 'are'}
+      may be
       ${this.backtrackCount === Infinity ? 'infinite' : this.backtrackCount}
       backtrack${this.backtrackCount !== 1 ? 's' : ''} possible in the worst
       case.
