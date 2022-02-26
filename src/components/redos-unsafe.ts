@@ -8,9 +8,11 @@ export class RedosUnsafe extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
     error: { type: String },
     maybe: { type: Boolean },
+    backtrackCount: { type: Number },
   };
 
   public error!: RedosDetectorError;
+  public backtrackCount!: number;
   public maybe = false;
 
   static styles = [
@@ -36,7 +38,11 @@ export class RedosUnsafe extends LitElement {
   render() {
     return html`<p class="message">
       <span class="icon">❌</span>This pattern
-      ${this.maybe ? 'might not be' : 'is not'} safe from ReDoS attacks.
+      ${this.maybe ? 'might not be' : 'is not'} safe from ReDoS attacks. There
+      ${this.backtrackCount === 1 ? 'is' : 'are'}
+      ${this.backtrackCount === Infinity ? 'infinite' : this.backtrackCount}
+      backtrack${this.backtrackCount !== 1 ? 's' : ''} possible in the worst
+      case.
     </p>`;
   }
 }
