@@ -323,7 +323,7 @@ export class Root extends LitElement {
                 </div>
               `
             : ''}
-          ${result?.result.trails.length > resultsLimit
+          ${result && result.result.trails.length > resultsLimit
             ? html`<my-more-results-msg></my-more-results-msg>`
             : ''}
         </div>
