@@ -1,21 +1,28 @@
 import { LitElement, css, html, PropertyDeclaration } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { createRef, ref, Ref } from 'lit/directives/ref';
-import { live } from 'lit/directives/live';
 import { borderBox, host } from '../css';
 
 @customElement('my-input')
 export class Input extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
-    value: { type: String },
+    value: { type: String, noAccessor: true },
     unicode: { type: Boolean },
   };
 
   private _inputRef: Ref<HTMLInputElement> = createRef();
   private _checkboxRef: Ref<HTMLInputElement> = createRef();
-
-  value = '';
+  private _value: string = '';
+  private _cachedValue: string = '';
   unicode = false;
+
+  get value(): string {
+    return this._value;
+  }
+  set value(value: string) {
+    this._value = value;
+    this._cachedValue = value;
+  }
 
   static styles = [
     borderBox,
@@ -51,7 +58,9 @@ export class Input extends LitElement {
   ];
 
   private _onChange = () => {
-    this.value = this._inputRef.value!.value;
+    // not updating the `_cachedValue`, so that lit-html doesn't try and set `.value` on the element,
+    // which causes the curosr to keep jumping to the end on iOS
+    this._value = this._inputRef.value!.value;
     this.unicode = this._checkboxRef.value!.checked;
     const event = new CustomEvent('my-change', {
       bubbles: true,
@@ -71,7 +80,7 @@ export class Input extends LitElement {
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        .value=${live(this.value)}
+        .value=${this._cachedValue}
         @input=${this._onChange}
         placeholder="Enter RegEx pattern..."
       />
