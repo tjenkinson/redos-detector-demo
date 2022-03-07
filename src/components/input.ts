@@ -80,7 +80,6 @@ export class Input extends LitElement {
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        .value=${this._cachedValue}
         @input=${this._onChange}
         placeholder="Enter RegEx pattern..."
       />
