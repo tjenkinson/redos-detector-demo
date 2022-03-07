@@ -6,23 +6,15 @@ import { borderBox, host } from '../css';
 @customElement('my-input')
 export class Input extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
-    value: { type: String, noAccessor: true },
+    value: { type: String },
     unicode: { type: Boolean },
   };
 
   private _inputRef: Ref<HTMLInputElement> = createRef();
   private _checkboxRef: Ref<HTMLInputElement> = createRef();
-  private _value: string = '';
-  private _cachedValue: string = '';
-  unicode = false;
 
-  get value(): string {
-    return this._value;
-  }
-  set value(value: string) {
-    this._value = value;
-    this._cachedValue = value;
-  }
+  value = '';
+  unicode = false;
 
   static styles = [
     borderBox,
@@ -58,9 +50,7 @@ export class Input extends LitElement {
   ];
 
   private _onChange = () => {
-    // not updating the `_cachedValue`, so that lit-html doesn't try and set `.value` on the element,
-    // which causes the curosr to keep jumping to the end on iOS
-    this._value = this._inputRef.value!.value;
+    this.value = this._inputRef.value!.value;
     this.unicode = this._checkboxRef.value!.checked;
     const event = new CustomEvent('my-change', {
       bubbles: true,
@@ -80,7 +70,7 @@ export class Input extends LitElement {
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        .value=${this._cachedValue}
+        .value=${this.value}
         @input=${this._onChange}
         placeholder="Enter RegEx pattern..."
       />
