@@ -51,6 +51,8 @@ export class Input extends LitElement {
 
   private _onChange = () => {
     this.value = this._inputRef.value!.value;
+    // this.value = 'test' + Math.random();
+    // this.value = 'test';
     this.unicode = this._checkboxRef.value!.checked;
     const event = new CustomEvent('my-change', {
       bubbles: true,
@@ -71,7 +73,7 @@ export class Input extends LitElement {
         autocapitalize="off"
         spellcheck="false"
         .value=${this.value}
-        @input=${this._onChange}
+        @input=${() => setTimeout(() => this._onChange(), 0)}
         placeholder="Enter RegEx pattern..."
       />
       <div class="slash">/</div>
