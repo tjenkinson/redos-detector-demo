@@ -72,7 +72,6 @@ export class Input extends LitElement {
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        .value=${this.value}
         @input=${() => setTimeout(() => this._onChange(), 0)}
         placeholder="Enter RegEx pattern..."
       />
