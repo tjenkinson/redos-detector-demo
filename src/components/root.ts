@@ -296,7 +296,7 @@ export class Root extends LitElement {
                   </div>`
                 : ''}
             </div>
-            ${result && !result.result.safe
+            ${result && result.result.trails.length
               ? html`
                   <div class="pattern">
                     <my-pattern
