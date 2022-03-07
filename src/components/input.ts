@@ -72,7 +72,8 @@ export class Input extends LitElement {
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        @input=${() => setTimeout(() => this._onChange(), 0)}
+        .value=${this.value}
+        @input=${() => setTimeout(() => this._onChange(), 1000)}
         placeholder="Enter RegEx pattern..."
       />
       <div class="slash">/</div>
