@@ -1,6 +1,7 @@
 import { LitElement, css, html, PropertyDeclaration } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { createRef, ref, Ref } from 'lit/directives/ref';
+import { live } from 'lit/directives/live';
 import { borderBox, host } from '../css';
 
 @customElement('my-input')
@@ -70,7 +71,7 @@ export class Input extends LitElement {
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
-        .value=${this.value}
+        .value=${live(this.value)}
         @input=${this._onChange}
         placeholder="Enter RegEx pattern..."
       />
