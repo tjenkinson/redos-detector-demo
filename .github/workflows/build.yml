@@ -21,7 +21,9 @@ jobs:
         env:
           CI: true
       - name: Run tests
-        run: npm test
+        run: |
+          npx --no playwright install-deps
+          npm test
         env:
           CI: true
       - uses: actions/upload-artifact@v2
