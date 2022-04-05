@@ -14,8 +14,14 @@ export class Input extends LitElement {
   private _inputRef: Ref<HTMLInputElement> = createRef();
   private _checkboxRef: Ref<HTMLInputElement> = createRef();
 
-  value = '';
-  unicode = false;
+  public value: string;
+  public unicode: boolean;
+
+  constructor() {
+    super();
+    this.value = '';
+    this.unicode = false;
+  }
 
   static styles = [
     borderBox,

@@ -13,7 +13,12 @@ export class RedosUnsafe extends LitElement {
 
   public error!: RedosDetectorError;
   public backtrackCount!: number;
-  public maybe = false;
+  public maybe: boolean;
+
+  constructor() {
+    super();
+    this.maybe = false;
+  }
 
   static styles = [
     borderBox,

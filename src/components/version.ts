@@ -8,7 +8,12 @@ export class Version extends LitElement {
     version: { type: String },
   };
 
-  public version = '';
+  public version: string;
+
+  constructor() {
+    super();
+    this.version = '';
+  }
 
   static styles = [
     borderBox,
