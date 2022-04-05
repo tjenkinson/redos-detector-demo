@@ -12,10 +12,18 @@ export class Pattern extends LitElement {
     pattern: { type: String },
   };
 
-  public highlightA: number[] = [];
-  public highlightB: number[] = [];
-  public included: number[] = [];
-  public pattern = '';
+  public highlightA: number[];
+  public highlightB: number[];
+  public included: number[];
+  public pattern: string;
+
+  constructor() {
+    super();
+    this.highlightA = [];
+    this.highlightB = [];
+    this.included = [];
+    this.pattern = '';
+  }
 
   static styles = [
     borderBox,

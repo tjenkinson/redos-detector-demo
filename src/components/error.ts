@@ -9,7 +9,12 @@ export class Error extends LitElement {
     message: { type: String },
   };
 
-  public message = '';
+  public message: string;
+
+  constructor() {
+    super();
+    this.message = '';
+  }
 
   static styles = [
     borderBox,

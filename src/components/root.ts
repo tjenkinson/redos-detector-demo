@@ -131,13 +131,11 @@ export class Root extends LitElement {
     `,
   ];
 
-  private _calculateHandle: CalculateHandle | null = null;
-  private _version: string | null = null;
-  private _highlightA: Set<number> = new Set();
-  private _highlightB: Set<number> = new Set();
-  private _result: ResultErrorLoading = {
-    type: 'loading',
-  };
+  private _calculateHandle: CalculateHandle | null;
+  private _version: string | null;
+  private _highlightA: Set<number>;
+  private _highlightB: Set<number>;
+  private _result: ResultErrorLoading;
   private _inputRef: Ref<Input> = createRef();
 
   private _pattern: string | null = null;
@@ -170,6 +168,17 @@ export class Root extends LitElement {
 
     this.requestUpdate('unicode', old);
     if (old !== null) this._dispatchChange();
+  }
+
+  constructor() {
+    super();
+    this._calculateHandle = null;
+    this._version = null;
+    this._highlightA = new Set();
+    this._highlightB = new Set();
+    this._result = {
+      type: 'loading',
+    };
   }
 
   private _dispatchChange(): void {
