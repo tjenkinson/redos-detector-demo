@@ -31,7 +31,7 @@ export class RedosSafe extends LitElement {
   ];
 
   render() {
-    return html`<p class="message">
+    return html`<p class="message" data-test="redos-safe">
       <span class="icon">✔</span>This pattern is safe from ReDoS
       attacks.${this.backtrackCount
         ? ` There may be ${

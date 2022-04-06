@@ -56,7 +56,7 @@ export class Pattern extends LitElement {
   ];
 
   render() {
-    return html`<div>
+    return html`<div data-test="pattern">
       ${this.pattern.split('').map((character, i) => {
         const classes = [
           'character',

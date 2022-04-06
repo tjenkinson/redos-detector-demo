@@ -20,3 +20,15 @@ jobs:
           npm run build:ci
         env:
           CI: true
+      - name: Run tests
+        run: |
+          npx --no playwright install --with-deps
+          npm test
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
