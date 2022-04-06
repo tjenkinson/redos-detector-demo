@@ -22,7 +22,7 @@ jobs:
           CI: true
       - name: Run tests
         run: |
-          npx --no playwright install-deps
+          npx --no playwright install --with-deps
           npm test
         env:
           CI: true
