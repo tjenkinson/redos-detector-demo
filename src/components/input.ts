@@ -71,6 +71,7 @@ export class Input extends LitElement {
       <div class="slash">/</div>
       <input
         ${ref(this._inputRef)}
+        data-test="pattern-input"
         class="input"
         type="text"
         autocomplete="off"
@@ -85,6 +86,7 @@ export class Input extends LitElement {
       <div class="unicode">
         <input
           ${ref(this._checkboxRef)}
+          data-test="unicode"
           id="unicode"
           class="checkbox"
           type="checkbox"

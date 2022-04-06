@@ -132,7 +132,7 @@ export class Result extends LitElement {
   }
 
   render() {
-    return html`<div>
+    return html`<div data-test="result">
       <table class="table">
         <tbody>
           <tr>
