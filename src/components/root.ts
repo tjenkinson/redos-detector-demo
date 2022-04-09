@@ -257,6 +257,7 @@ export class Root extends LitElement {
           <my-description class="description"></my-description>
           <my-input
             class="input"
+            data-nosnippet
             ${ref(this._inputRef)}
             .value=${this.pattern}
             .unicode=${this.unicode}
