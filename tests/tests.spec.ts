@@ -1,10 +1,11 @@
-import { test } from '@playwright/test';
-
-test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:3000/');
-});
+import { expect, test } from '@playwright/test';
+import { URL } from 'url';
 
 test.describe('Redos Detector Demo', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('http://localhost:3000/');
+  });
+
   test('should initially show the safe message', async ({ page }) => {
     await page.locator('[data-test=redos-safe]').waitFor({ timeout: 2000 });
   });
@@ -53,5 +54,21 @@ test.describe('Redos Detector Demo', () => {
         .first()
         .isVisible();
     });
+  });
+
+  test('should update the url', async ({ page }) => {
+    await page.locator('[data-test=pattern-input]').type('a+a+$');
+    await page.locator('[data-test=unicode]').check();
+    const params = new URL(page.url()).searchParams;
+    expect(params.get('pattern')).toBe('a+a+$');
+    expect(params.get('unicode')).toBe('true');
+  });
+
+  test('should preload from url', async ({ page }) => {
+    await page.goto('http://localhost:3000/?pattern=a%2Ba%2B%24&unicode=true');
+    expect(await page.locator('[data-test=pattern-input]').inputValue()).toBe(
+      'a+a+$'
+    );
+    expect(await page.locator('[data-test=unicode]').isChecked()).toBe(true);
   });
 });
