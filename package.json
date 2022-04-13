@@ -35,7 +35,7 @@
     "http-server": "^14.1.0",
     "husky": "7.0.4",
     "lint-staged": "12.3.7",
-    "lit": "2.2.1",
+    "lit": "2.2.2",
     "micromatch": "4.0.5",
     "parcel": "2.4.1",
     "playwright": "^1.20.2",
