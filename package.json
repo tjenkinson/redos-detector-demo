@@ -33,7 +33,7 @@
     "@playwright/test": "1.29.1",
     "comlink": "4.3.1",
     "http-server": "14.1.1",
-    "husky": "8.0.2",
+    "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "lit": "2.5.0",
     "micromatch": "4.0.5",
