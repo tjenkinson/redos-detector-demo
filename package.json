@@ -41,7 +41,7 @@
     "playwright": "1.29.2",
     "posthtml-expressions": "1.11.0",
     "prettier": "2.8.2",
-    "redos-detector": "3.1.6",
+    "redos-detector": "3.2.0",
     "tslib": "2.4.1",
     "typescript": "4.9.4"
   }
