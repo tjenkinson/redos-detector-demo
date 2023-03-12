@@ -34,7 +34,7 @@
     "comlink": "4.4.1",
     "http-server": "14.1.1",
     "husky": "8.0.3",
-    "lint-staged": "13.1.2",
+    "lint-staged": "13.1.3",
     "lit": "2.6.1",
     "micromatch": "4.0.5",
     "parcel": "2.8.3",
