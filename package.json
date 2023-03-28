@@ -40,7 +40,7 @@
     "parcel": "2.8.3",
     "playwright": "1.31.2",
     "posthtml-expressions": "1.11.0",
-    "prettier": "2.8.5",
+    "prettier": "2.8.6",
     "redos-detector": "3.2.1",
     "tslib": "2.5.0",
     "typescript": "5.0.2"
