@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/tjenkinson/redos-detector-demo#readme",
   "devDependencies": {
-    "@playwright/test": "1.32.0",
+    "@playwright/test": "1.32.1",
     "comlink": "4.4.1",
     "http-server": "14.1.1",
     "husky": "8.0.3",
@@ -38,7 +38,7 @@
     "lit": "2.7.0",
     "micromatch": "4.0.5",
     "parcel": "2.8.3",
-    "playwright": "1.32.0",
+    "playwright": "1.32.1",
     "posthtml-expressions": "1.11.0",
     "prettier": "2.8.7",
     "redos-detector": "3.2.1",
