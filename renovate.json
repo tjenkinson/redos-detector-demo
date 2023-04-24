@@ -11,7 +11,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["redos-detector"],
-      "stabilityDays": null
+      "minimumReleaseAge": null
     },
     {
       "matchDepTypes": ["devDependencies"],
