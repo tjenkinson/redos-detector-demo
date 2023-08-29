@@ -67,7 +67,7 @@ test.describe('Redos Detector Demo', () => {
   test('should preload from url', async ({ page }) => {
     await page.goto('http://localhost:3000/?pattern=a%2Ba%2B%24&unicode=true');
     expect(await page.locator('[data-test=pattern-input]').inputValue()).toBe(
-      'a+a+$'
+      'a+a+$',
     );
     expect(await page.locator('[data-test=unicode]').isChecked()).toBe(true);
   });

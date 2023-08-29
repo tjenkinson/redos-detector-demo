@@ -19,7 +19,7 @@ export function calculate(pattern: string, unicode: boolean): CalculateHandle {
     onAbort = () => _onAbort(aborted);
   });
   const fakeDelay = new Promise<void>((resolve) =>
-    setTimeout(() => resolve(), 200)
+    setTimeout(() => resolve(), 200),
   );
   return {
     abort: () => {

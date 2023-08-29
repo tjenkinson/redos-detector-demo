@@ -86,7 +86,7 @@ export class Result extends LitElement {
 
   private _updateOffsets(): void {
     const el = this.shadowRoot!.querySelector<HTMLTableRowElement>(
-      'tr.result-row:hover'
+      'tr.result-row:hover',
     );
     let aOffsets: Set<number> = new Set();
     let bOffsets: Set<number> = new Set();
@@ -95,17 +95,17 @@ export class Result extends LitElement {
       const entry = this.trail.trail[index];
 
       const getOffsets = (
-        entrySide: RedosDetectorTrailEntrySide
+        entrySide: RedosDetectorTrailEntrySide,
       ): Set<number> => {
         const sideOffsets: Set<number> = new Set();
         sequence(
           entrySide.node.start.offset,
-          entrySide.node.end.offset
+          entrySide.node.end.offset,
         ).forEach((offset) => sideOffsets.add(offset));
         entrySide.backreferenceStack.forEach((backreference) => {
           sequence(
             backreference.node.start.offset,
-            backreference.node.end.offset
+            backreference.node.end.offset,
           ).forEach((offset) => sideOffsets.add(offset));
         });
         return sideOffsets;
