@@ -4,3 +4,4 @@ node_modules
 .parcel-cache
 test-results/
 playwright-report/
+/.netlify
