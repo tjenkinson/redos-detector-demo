@@ -17,7 +17,7 @@ export type ResultOrError =
 
 export type Calculate = (
   pattern: string,
-  unicode: boolean
+  unicode: boolean,
 ) => Promise<ResultOrError>;
 
 const calculate: Calculate = async (pattern: string, unicode: boolean) => {

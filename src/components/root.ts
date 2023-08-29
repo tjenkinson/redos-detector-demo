@@ -276,7 +276,7 @@ export class Root extends LitElement {
                 ? html`<div>
                     <my-redos-safe
                       .backtrackCount=${backtrackCountToNumber(
-                        result.result.worstCaseBacktrackCount
+                        result.result.worstCaseBacktrackCount,
                       )}
                     ></my-redos-safe>
                   </div>`
@@ -287,7 +287,7 @@ export class Root extends LitElement {
                       <my-redos-unsafe
                         .maybe=${result.result.trails.length === 0}
                         .backtrackCount=${backtrackCountToNumber(
-                          result.result.worstCaseBacktrackCount
+                          result.result.worstCaseBacktrackCount,
                         )}
                       ></my-redos-unsafe>
                     </div>
@@ -323,12 +323,13 @@ export class Root extends LitElement {
             ? html`
                 <div class="results">
                   ${result.result.trails.slice(0, resultsLimit).map(
-                    (trail) => html`<div class="result">
-                      <my-result
-                        .trail=${trail}
-                        @my-result-change=${this._onSelectionChange}
-                      ></my-result>
-                    </div>`
+                    (trail) =>
+                      html`<div class="result">
+                        <my-result
+                          .trail=${trail}
+                          @my-result-change=${this._onSelectionChange}
+                        ></my-result>
+                      </div>`,
                   )}
                 </div>
               `
