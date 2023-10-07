@@ -36,7 +36,7 @@ test.describe('Redos Detector Demo', () => {
   test('supports case insensitive mode', async ({ page }) => {
     await page.locator('[data-test=pattern-input]').type('a+A+$');
     await page.locator('[data-test=redos-safe]').waitFor({ timeout: 2000 });
-    await page.locator('[data-test=unicode]').check();
+    await page.locator('[data-test=case-insensitive]').check();
     await page.locator('[data-test=redos-unsafe]').waitFor({ timeout: 2000 });
   });
 
