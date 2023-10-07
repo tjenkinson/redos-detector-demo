@@ -102,7 +102,7 @@ export class Input extends LitElement {
       />
       <div class="slash">/</div>
       <div class="flags">
-        <div>
+        <div title="Case insensitive">
           <input
             data-test="case-insensitive"
             id="case-insensitive"
@@ -112,7 +112,7 @@ export class Input extends LitElement {
             @click=${() => this._onCheckboxClick('i')}
           /><label for="case-insensitive">i</label>
         </div>
-        <div>
+        <div title="Unicode">
           <input
             data-test="unicode"
             id="unicode"
