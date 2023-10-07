@@ -4,23 +4,22 @@ import { createRef, ref, Ref } from 'lit/directives/ref';
 import { live } from 'lit/directives/live';
 import { borderBox, host } from '../css';
 
+export type Flag = 'i' | 'u' | '';
+
 @customElement('my-input')
 export class Input extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
     value: { type: String },
-    unicode: { type: Boolean },
+    flag: { type: String },
   };
 
-  private _inputRef: Ref<HTMLInputElement> = createRef();
-  private _checkboxRef: Ref<HTMLInputElement> = createRef();
-
   public value: string;
-  public unicode: boolean;
+  public flag: Flag;
 
   constructor() {
     super();
     this.value = '';
-    this.unicode = false;
+    this.flag = '';
   }
 
   static styles = [
@@ -42,13 +41,18 @@ export class Input extends LitElement {
       }
 
       .slash,
-      .unicode,
+      .flags,
       .input {
         font-size: 1.5rem;
         font-family: Arial;
       }
 
-      .unicode .checkbox {
+      .flags {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .flags .checkbox {
         margin-right: 0.4em;
         width: 1rem;
         height: 1rem;
@@ -56,21 +60,35 @@ export class Input extends LitElement {
     `,
   ];
 
-  private _onChange = () => {
-    this.value = this._inputRef.value!.value;
-    this.unicode = this._checkboxRef.value!.checked;
-    const event = new CustomEvent('my-change', {
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
+  private _onCheckboxClick = (flag: Flag) => {
+    if (this.flag === flag) {
+      this.flag = '';
+    } else {
+      this.flag = flag;
+    }
+
+    this.dispatchEvent(
+      new CustomEvent('my-change', {
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  };
+
+  private _onChange = (event: Event) => {
+    this.value = (event.target as HTMLInputElement).value;
+    this.dispatchEvent(
+      new CustomEvent('my-change', {
+        bubbles: true,
+        composed: true,
+      }),
+    );
   };
 
   render() {
     return html`<div class="container">
       <div class="slash">/</div>
       <input
-        ${ref(this._inputRef)}
         data-test="pattern-input"
         class="input"
         type="text"
@@ -83,16 +101,27 @@ export class Input extends LitElement {
         placeholder="Enter RegEx pattern..."
       />
       <div class="slash">/</div>
-      <div class="unicode">
-        <input
-          ${ref(this._checkboxRef)}
-          data-test="unicode"
-          id="unicode"
-          class="checkbox"
-          type="checkbox"
-          ?checked=${this.unicode}
-          @input=${this._onChange}
-        /><label for="unicode">Unicode</label>
+      <div class="flags">
+        <div>
+          <input
+            data-test="case-insensitive"
+            id="case-insensitive"
+            class="checkbox"
+            type="checkbox"
+            .checked=${live(this.flag === 'i')}
+            @click=${() => this._onCheckboxClick('i')}
+          /><label for="case-insensitive">i</label>
+        </div>
+        <div>
+          <input
+            data-test="unicode"
+            id="unicode"
+            class="checkbox"
+            type="checkbox"
+            .checked=${live(this.flag === 'u')}
+            @click=${() => this._onCheckboxClick('u')}
+          /><label for="unicode">u</label>
+        </div>
       </div>
     </div>`;
   }

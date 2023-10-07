@@ -2,7 +2,7 @@ import { LitElement, html, PropertyDeclaration, css } from 'lit';
 import { customElement } from 'lit/decorators';
 import { createRef, ref, Ref } from 'lit/directives/ref';
 import { borderBox, footerReset, host } from '../css';
-import { Input } from './input';
+import { Flag, Input } from './input';
 import './input';
 import './pattern';
 import './result';
@@ -34,7 +34,7 @@ function backtrackCountToNumber(backtrackCount: BacktrackCount): number {
 export class Root extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
     pattern: { type: String, noAccessor: true },
-    unicode: { type: Boolean, noAccessor: true },
+    flag: { type: String, noAccessor: true },
     _highlightA: { state: true },
     _highlightB: { state: true },
     _included: { state: true },
@@ -154,19 +154,19 @@ export class Root extends LitElement {
     if (old !== null) this._dispatchChange();
   }
 
-  private _unicode: boolean | null = null;
-  get unicode(): boolean {
-    return !!this._unicode;
+  private _flag: Flag | null = null;
+  get flag(): Flag {
+    return this._flag ?? '';
   }
-  set unicode(value: boolean) {
-    const old = this._unicode;
+  set flag(value: Flag) {
+    const old = this._flag;
     if (old === value) return;
 
-    this._unicode = value;
+    this._flag = value;
 
     this._runCalculation();
 
-    this.requestUpdate('unicode', old);
+    this.requestUpdate('flag', old);
     if (old !== null) this._dispatchChange();
   }
 
@@ -195,7 +195,7 @@ export class Root extends LitElement {
     };
 
     this._calculateHandle?.abort();
-    this._calculateHandle = calculate(this.pattern, this.unicode);
+    this._calculateHandle = calculate(this.pattern, this.flag);
     this._calculateHandle.result
       .then(async (result) => {
         this._result = result;
@@ -215,7 +215,7 @@ export class Root extends LitElement {
 
   private _onPatternChange(): void {
     this.pattern = this._inputRef.value!.value;
-    this.unicode = this._inputRef.value!.unicode;
+    this.flag = this._inputRef.value!.flag;
   }
 
   private _onSelectionChange(): void {
@@ -260,7 +260,7 @@ export class Root extends LitElement {
             data-nosnippet
             ${ref(this._inputRef)}
             .value=${this.pattern}
-            .unicode=${this.unicode}
+            .flag=${this.flag}
             @my-change=${this._onPatternChange}
           ></my-input>
 

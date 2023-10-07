@@ -1,6 +1,7 @@
 import type { RedosDetectorResult } from 'redos-detector';
 import { sequence } from './sequence';
 import * as Comlink from 'comlink';
+import { Flag } from './components/input';
 
 export type Result = {
   type: 'result';
@@ -15,16 +16,14 @@ export type ResultOrError =
       message: string;
     };
 
-export type Calculate = (
-  pattern: string,
-  unicode: boolean,
-) => Promise<ResultOrError>;
+export type Calculate = (pattern: string, flag: Flag) => Promise<ResultOrError>;
 
-const calculate: Calculate = async (pattern: string, unicode: boolean) => {
+const calculate: Calculate = async (pattern: string, flag: Flag) => {
   try {
     const { isSafePattern } = await import('./redos-detector-is-safe-pattern');
     const result = isSafePattern(pattern, {
-      unicode,
+      caseInsensitive: flag === 'i',
+      unicode: flag === 'u',
     });
     const included: Set<number> = new Set();
     result.trails.forEach(({ trail }) => {
