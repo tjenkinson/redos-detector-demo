@@ -19,18 +19,32 @@
     <script type="text/javascript">
       (() => {
         const PATTERN = 'pattern';
+        const CASE_INSENSITIVE = 'caseInsensitive';
         const UNICODE = 'unicode';
         const root = document.getElementById('root');
         const params = new URLSearchParams(window.location.search);
         root.pattern = params.get(PATTERN) || '';
-        root.unicode = params.get(UNICODE) === 'true';
+        root.flag =
+          params.get(CASE_INSENSITIVE) === 'true'
+            ? 'i'
+            : params.get(UNICODE) === 'true'
+            ? 'u'
+            : '';
 
-        root.addEventListener('my-change', () => {
+        const onChange = () => {
           const url = new URL(location.href);
           url.searchParams.set(PATTERN, root.pattern);
-          url.searchParams.set(UNICODE, root.unicode ? 'true' : 'false');
+          url.searchParams.set(
+            CASE_INSENSITIVE,
+            root.flag === 'i' ? 'true' : 'false',
+          );
+          url.searchParams.set(UNICODE, root.flag === 'u' ? 'true' : 'false');
           history.replaceState(null, '', url);
-        });
+        };
+
+        root.addEventListener('my-change', onChange);
+
+        onChange();
       })();
     </script>
   </body>

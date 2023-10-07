@@ -1,5 +1,6 @@
 import type { Calculate, ResultOrError } from './calculate-worker';
 import * as Comlink from 'comlink';
+import { Flag } from './components/input';
 
 export type CalculateHandle = {
   abort: () => void;
@@ -8,7 +9,7 @@ export type CalculateHandle = {
 
 export const aborted: unique symbol = Symbol('aborted');
 
-export function calculate(pattern: string, unicode: boolean): CalculateHandle {
+export function calculate(pattern: string, flag: Flag): CalculateHandle {
   const worker = new Worker(new URL('./calculate-worker.ts', import.meta.url), {
     type: 'module',
   });
@@ -29,7 +30,7 @@ export function calculate(pattern: string, unicode: boolean): CalculateHandle {
     },
     result: Promise.race([
       abortedPromise,
-      calculateWorker(pattern, unicode).then(async (res) => {
+      calculateWorker(pattern, flag).then(async (res) => {
         await fakeDelay;
         return res;
       }),
