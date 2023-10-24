@@ -39,7 +39,7 @@
     "micromatch": "4.0.5",
     "parcel": "2.10.0",
     "playwright": "1.39.0",
-    "posthtml-expressions": "1.11.1",
+    "posthtml-expressions": "1.11.2",
     "prettier": "3.0.3",
     "redos-detector": "4.2.1",
     "tslib": "2.6.2",
