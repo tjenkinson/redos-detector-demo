@@ -8,7 +8,6 @@ const errorToMessage: Record<RedosDetectorError, string> = {
     'Hit max backtracks, so there may be more results than shown here.',
   hitMaxSteps:
     'Hit maximum number of steps so there may be more results than shown here.',
-  stackOverflow: 'Stack overflow occurred. Regex may have too much branching.',
   timedOut: 'Timed out so there may be more results than shown here.',
 };
 
