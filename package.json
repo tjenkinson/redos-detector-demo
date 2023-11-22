@@ -37,7 +37,7 @@
     "lint-staged": "15.1.0",
     "lit": "3.0.2",
     "micromatch": "4.0.5",
-    "parcel": "2.10.2",
+    "parcel": "2.10.3",
     "playwright": "1.39.0",
     "posthtml-expressions": "1.11.3",
     "prettier": "3.0.3",
