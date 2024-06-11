@@ -42,7 +42,7 @@
     "posthtml-expressions": "1.11.3",
     "prettier": "3.0.3",
     "redos-detector": "5.1.0",
-    "tslib": "2.6.2",
+    "tslib": "2.6.3",
     "typescript": "5.4.5"
   }
 }
