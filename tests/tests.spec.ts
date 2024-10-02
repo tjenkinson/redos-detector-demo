@@ -29,19 +29,22 @@ test.describe('Redos Detector Demo', () => {
     });
 
     test('should show results when pattern is not safe', async ({ page }) => {
-      await page.locator('[data-test=result]').waitFor({ timeout: 2000 });
+      await page
+        .locator('[data-test=result]')
+        .first()
+        .waitFor({ timeout: 2000 });
     });
   });
 
   test('supports case insensitive mode', async ({ page }) => {
-    await page.locator('[data-test=pattern-input]').type('a+A+$');
+    await page.locator('[data-test=pattern-input]').type('^a+A+$');
     await page.locator('[data-test=redos-safe]').waitFor({ timeout: 2000 });
     await page.locator('[data-test=case-insensitive]').check();
     await page.locator('[data-test=redos-unsafe]').waitFor({ timeout: 2000 });
   });
 
   test('supports unicode mode', async ({ page }) => {
-    await page.locator('[data-test=pattern-input]').type('👍+👍+$');
+    await page.locator('[data-test=pattern-input]').type('^👍+👍+$');
     await page.locator('[data-test=redos-safe]').waitFor({ timeout: 2000 });
     await page.locator('[data-test=unicode]').check();
     await page.locator('[data-test=redos-unsafe]').waitFor({ timeout: 2000 });
