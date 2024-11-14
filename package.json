@@ -31,7 +31,7 @@
   "homepage": "https://github.com/tjenkinson/redos-detector-demo#readme",
   "devDependencies": {
     "@playwright/test": "1.48.2",
-    "comlink": "4.4.1",
+    "comlink": "4.4.2",
     "http-server": "14.1.1",
     "husky": "8.0.3",
     "lint-staged": "15.2.10",
