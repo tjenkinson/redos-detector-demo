@@ -8,11 +8,11 @@ export class RedosUnsafe extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
     error: { type: String },
     maybe: { type: Boolean },
-    backtrackCount: { type: Number },
+    score: { type: Number },
   };
 
   public error!: RedosDetectorError;
-  public backtrackCount!: number;
+  public score!: number;
   public maybe: boolean;
 
   constructor() {
@@ -43,11 +43,10 @@ export class RedosUnsafe extends LitElement {
   render() {
     return html`<p class="message" data-test="redos-unsafe">
       <span class="icon">❌</span>This pattern
-      ${this.maybe ? 'might not be' : 'is not'} safe from ReDoS attacks. There
-      may be
-      ${this.backtrackCount === Infinity ? 'infinite' : this.backtrackCount}
-      backtrack${this.backtrackCount !== 1 ? 's' : ''} possible in the worst
-      case.
+      ${this.maybe ? 'might not be' : 'is not'} safe from ReDoS attacks.
+      ${this.score === Infinity
+        ? `There may be infinite backtracks possible.`
+        : `Score: ${this.score}`}
     </p>`;
   }
 }

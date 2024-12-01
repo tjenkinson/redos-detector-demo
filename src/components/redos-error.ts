@@ -4,8 +4,7 @@ import { customElement } from 'lit/decorators';
 import { borderBox, host, pReset } from '../css';
 
 const errorToMessage: Record<RedosDetectorError, string> = {
-  hitMaxBacktracks:
-    'Hit max backtracks, so there may be more results than shown here.',
+  hitMaxScore: 'Hit max score, so there may be more results than shown here.',
   hitMaxSteps:
     'Hit maximum number of steps so there may be more results than shown here.',
   timedOut: 'Timed out so there may be more results than shown here.',
