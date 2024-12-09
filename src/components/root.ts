@@ -20,14 +20,14 @@ import { Result as ResultEl } from './result';
 import { setsEqual } from '../set';
 import { aborted, calculate, CalculateHandle } from '../calculate';
 import { ResultOrError } from '../calculate-worker';
-import { BacktrackCount } from 'redos-detector';
+import { Score } from 'redos-detector';
 
 type ResultErrorLoading = ResultOrError | { type: 'loading' };
 
 const resultsLimit = 20;
 
-function backtrackCountToNumber(backtrackCount: BacktrackCount): number {
-  return backtrackCount.infinite ? Infinity : backtrackCount.value;
+function score(score: Score): number {
+  return score.infinite ? Infinity : score.value;
 }
 
 @customElement('my-root')
@@ -275,9 +275,7 @@ export class Root extends LitElement {
               ${result?.result.safe
                 ? html`<div>
                     <my-redos-safe
-                      .backtrackCount=${backtrackCountToNumber(
-                        result.result.worstCaseBacktrackCount,
-                      )}
+                      .score=${score(result.result.score)}
                     ></my-redos-safe>
                   </div>`
                 : ''}
@@ -286,9 +284,7 @@ export class Root extends LitElement {
                     <div>
                       <my-redos-unsafe
                         .maybe=${result.result.trails.length === 0}
-                        .backtrackCount=${backtrackCountToNumber(
-                          result.result.worstCaseBacktrackCount,
-                        )}
+                        .score=${score(result.result.score)}
                       ></my-redos-unsafe>
                     </div>
                   `

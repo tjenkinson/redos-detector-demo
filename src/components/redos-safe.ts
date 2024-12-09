@@ -5,10 +5,10 @@ import { borderBox, host, pReset } from '../css';
 @customElement('my-redos-safe')
 export class RedosSafe extends LitElement {
   static properties: Record<string, PropertyDeclaration> = {
-    backtrackCount: { type: Number },
+    score: { type: Number },
   };
 
-  public backtrackCount!: number;
+  public score!: number;
 
   static styles = [
     borderBox,
@@ -32,15 +32,8 @@ export class RedosSafe extends LitElement {
 
   render() {
     return html`<p class="message" data-test="redos-safe">
-      <span class="icon">✔</span>This pattern is safe from ReDoS
-      attacks.${this.backtrackCount
-        ? ` There may be ${
-            this.backtrackCount === Infinity
-              ? 'infinite'
-              : `at most ${this.backtrackCount}`
-          } backtrack${this.backtrackCount !== 1 ? 's' : ''} possible.`
-        : ''}
-      🎉
+      <span class="icon">✔</span>This pattern is safe from ReDoS attacks.
+      Score: ${this.score} 🎉
     </p>`;
   }
 }
